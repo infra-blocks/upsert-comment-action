@@ -3,18 +3,34 @@ description: |
   This action does nothing meaningful.
 
 inputs:
-  example-input:
-    description: A useless input as an example
+  body:
+    description: |
+      The comment content.
     required: true
+  matches:
+    description: |
+      The regular expression used to retrieve the existing comment and update.
 outputs:
-  example-output:
-    description: You know it.
-    value: ${{ steps.generate-output.outputs.example-output }}
+  comment-id:
+    description: The comment ID.
+    value: ${{ steps.upsert-comment.outputs.comment-id }}
+
+
 runs:
   using: "composite"
   steps:
-    - run: echo "here is your input :${{ inputs.example-input }}."
-      shell: bash
-    - id: generate-output
-      run: echo "example-output=here is your output"
-      shell: bash
+    - name: Find Comment
+      id: find-comment
+      uses: peter-evans/find-comment@v2
+      with:
+        issue-number: ${{ github.event.pull_request.number }}
+        comment-author: github-actions[bot]
+        body-regex: ${{ inputs.matches }}
+    - name: Upsert comment
+      id: upsert-comment
+      uses: peter-evans/create-or-update-comment@v3
+      with:
+        comment-id: ${{ steps.find-comment.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: ${{ inputs.body }}
+        edit-mode: replace
