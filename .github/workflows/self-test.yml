@@ -1,7 +1,10 @@
 name: Self test
 
 on:
-  push: ~
+  pull_request: ~
+
+permissions:
+  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -12,9 +15,14 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - id: composite-action
+      - id: action
         uses: ./
         with:
-          example-input: Hello?
-      - run: |
-          echo ${{ steps.composite-action.outputs.example-output }}
+          body: |
+            Test upsert-comment from within!
+            
+            _Signed with love._
+          matches: '.*_Signed with love\._$'
+      - name: Show outputs
+        run: |
+          echo "comment ID is: ${{ steps.action.outputs.comment-id }}"
