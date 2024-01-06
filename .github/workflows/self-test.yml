@@ -2,6 +2,7 @@ name: Self test
 
 on:
   pull_request: ~
+  push: ~
 
 permissions:
   pull-requests: write
@@ -15,14 +16,33 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - id: action
+      - if: ${{ github.event_name == 'pull_request' }}
+        id: pr-action
         uses: ./
         with:
           body: |
-            Test upsert-comment from within!
+            Test upsert-comment from PR!
             
             _Signed with love._
           matches: '.*_Signed with love\._$'
-      - name: Show outputs
+      - if: ${{ github.event_name == 'pull_request' }}
+        name: Show outputs
         run: |
-          echo "comment ID is: ${{ steps.action.outputs.comment-id }}"
+          echo "comment ID is: ${{ steps.pr-action.outputs.comment-id }}"
+      - if: ${{ github.event_name == 'push' }}
+        id: get-current-pr
+        uses: 8BitJonny/gh-get-current-pr@2.2.0
+      - if: ${{ github.event_name == 'push' }}
+        id: push-action
+        uses: ./
+        with:
+          body: |
+            Test upsert-comment from push!
+
+            __Signed with hatred.__
+          matches: '.*__Signed with hatred\.__$'
+          issue-number: ${{ steps.get-current-pr.outputs.number }}
+      - if: ${{ github.event_name == 'push' }}
+        name: Show outputs
+        run: |
+          echo "comment ID is: ${{ steps.push-action.outputs.comment-id }}"

@@ -10,6 +10,13 @@ inputs:
   matches:
     description: |
       The regular expression used to retrieve the existing comment and update.
+    required: true
+  issue-number:
+    description: |
+      The issue where to post the comment. This defaults to the PR number on pull request events,
+      otherwise, it should be provided.
+    required: true
+    default: ${{ github.event.pull_request.number }}
 outputs:
   comment-id:
     description: The comment ID.
@@ -22,7 +29,7 @@ runs:
       id: find-comment
       uses: peter-evans/find-comment@v2
       with:
-        issue-number: ${{ github.event.pull_request.number }}
+        issue-number: ${{ inputs.issue-number }}
         comment-author: github-actions[bot]
         body-regex: ${{ inputs.matches }}
     - name: Upsert comment
@@ -30,6 +37,6 @@ runs:
       uses: peter-evans/create-or-update-comment@v3
       with:
         comment-id: ${{ steps.find-comment.outputs.comment-id }}
-        issue-number: ${{ github.event.pull_request.number }}
+        issue-number: ${{ inputs.issue-number }}
         body: ${{ inputs.body }}
         edit-mode: replace
