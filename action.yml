@@ -1,6 +1,6 @@
-name: Composite action template
+name: Upsert Comment Action
 description: |
-  This action does nothing meaningful.
+  Creates or updates a comment posted by the GitHub Actions bot that matches a regular expression.
 
 inputs:
   body:
@@ -14,7 +14,6 @@ outputs:
   comment-id:
     description: The comment ID.
     value: ${{ steps.upsert-comment.outputs.comment-id }}
-
 
 runs:
   using: "composite"
