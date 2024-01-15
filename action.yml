@@ -9,7 +9,7 @@ inputs:
     required: true
   matches:
     description: |
-      The regular expression used to retrieve the existing comment and update.
+      The regular expression used to find existing comment.
     required: true
   issue-number:
     description: |
