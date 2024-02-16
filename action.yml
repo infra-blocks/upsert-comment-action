@@ -13,8 +13,10 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - run: echo "here is your input :${{ inputs.example-input }}."
-      shell: bash
+    - shell: bash
+      run: |
+        echo "here is your input: ${{ inputs.example-input }}."
     - id: generate-output
-      run: echo "example-output=here is your output"
       shell: bash
+      run: |
+        echo "example-output=here is your output" >> ${GITHUB_OUTPUT}

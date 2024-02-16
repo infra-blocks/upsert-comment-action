@@ -12,9 +12,13 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - id: composite-action
+      - name: Invoke action
+        id: self-test
         uses: ./
         with:
           example-input: Hello?
-      - run: |
-          echo ${{ steps.composite-action.outputs.example-output }}
+      - name: Show outputs
+        env:
+          OUTPUTS: ${{ toJson(steps.self-test.outputs) }}
+        run: |
+          echo "${OUTPUTS}"
