@@ -42,6 +42,7 @@ jobs:
   upsert-comment:
     runs-on: ubuntu-22.04
     steps:
+      # Defaults to using ${{ github.event.pull_request.number }}
       - id: upsert-comment
         uses: infrastructure-blocks/upsert-comment-action@v1
         with:
@@ -66,9 +67,10 @@ jobs:
   upsert-comment:
     runs-on: ubuntu-22.04
     steps:
-      # Gets the PR from the GITHUB_SHA
+      # Gets the PR from the GITHUB_SHA on push.
       - id: get-current-pr
-        uses: 8BitJonny/gh-get-current-pr@2.2.0
+        uses: infrastructure-blocks/get-current-pull-request-action@v1
+      # Upsert a comment on the issue (PR in our case) number
       - id: upsert-comment
         uses: infrastructure-blocks/upsert-comment-action@v1
         with:
