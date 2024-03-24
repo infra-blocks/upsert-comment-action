@@ -15,8 +15,14 @@ runs:
   steps:
     - shell: bash
       run: |
+        if test "${{ runner.debug }}" = "1"; then
+          set -x
+        fi
         echo "here is your input: ${{ inputs.example-input }}."
     - id: generate-output
       shell: bash
       run: |
+        if test "${{ runner.debug }}" = "1"; then
+          set -x
+        fi
         echo "example-output=here is your output" >> ${GITHUB_OUTPUT}
