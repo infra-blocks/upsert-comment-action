@@ -1,7 +1,7 @@
 # upsert-comment-action
-[![Release](https://github.com/infrastructure-blocks/upsert-comment-action/actions/workflows/git-tag-semver-from-label.yml/badge.svg)](https://github.com/infrastructure-blocks/upsert-comment-action/actions/workflows/git-tag-semver-from-label.yml)
-[![Self Test](https://github.com/infrastructure-blocks/upsert-comment-action/actions/workflows/self-test.yml/badge.svg)](https://github.com/infrastructure-blocks/upsert-comment-action/actions/workflows/self-test.yml)
-[![Update From Template](https://github.com/infrastructure-blocks/upsert-comment-action/actions/workflows/update-from-template.yml/badge.svg)](https://github.com/infrastructure-blocks/upsert-comment-action/actions/workflows/update-from-template.yml)
+[![Release](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/git-tag-semver-from-label.yml/badge.svg)](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/git-tag-semver-from-label.yml)
+[![Self Test](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/self-test.yml/badge.svg)](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/self-test.yml)
+[![Update From Template](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/update-from-template.yml/badge.svg)](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/update-from-template.yml)
 
 This action creates/updates a comment that matches a specific pattern. The comment author is expected to be
 the GitHub Actions bot. When posting a comment that matches an existing comment, it overwrites it.
@@ -44,7 +44,7 @@ jobs:
     steps:
       # Defaults to using ${{ github.event.pull_request.number }}
       - id: upsert-comment
-        uses: infrastructure-blocks/upsert-comment-action@v1
+        uses: infra-blocks/upsert-comment-action@v1
         with:
           body: |
             What's up bro?
@@ -69,10 +69,10 @@ jobs:
     steps:
       # Gets the PR from the GITHUB_SHA on push.
       - id: get-current-pr
-        uses: infrastructure-blocks/get-current-pull-request-action@v1
+        uses: infra-blocks/get-current-pull-request-action@v1
       # Upsert a comment on the issue (PR in our case) number
       - id: upsert-comment
-        uses: infrastructure-blocks/upsert-comment-action@v1
+        uses: infra-blocks/upsert-comment-action@v1
         with:
           issue-number: ${{ steps.get-current-pr.outputs.number }}
           body: |
