@@ -34,7 +34,7 @@ jobs:
           echo "${OUTPUTS}"
       - if: ${{ github.event_name == 'push' }}
         id: get-current-pr
-        uses: infrastructure-blocks/get-current-pull-request-action@v1
+        uses: infra-blocks/get-current-pull-request-action@v1
       - if: ${{ github.event_name == 'push' }}
         name: Post PR comment from push event
         id: push-action
