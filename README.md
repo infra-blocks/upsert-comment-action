@@ -1,17 +1,17 @@
 # composite-action-template
-[![Release](https://github.com/infra-blocks/composite-action-template/actions/workflows/git-tag-semver-from-label.yml/badge.svg)](https://github.com/infra-blocks/composite-action-template/actions/workflows/git-tag-semver-from-label.yml)
+[![Release](https://github.com/infra-blocks/composite-action-template/actions/workflows/release.yml/badge.svg)](https://github.com/infra-blocks/composite-action-template/actions/workflows/release.yml)
 [![Self Test](https://github.com/infra-blocks/composite-action-template/actions/workflows/self-test.yml/badge.svg)](https://github.com/infra-blocks/composite-action-template/actions/workflows/self-test.yml)
-[![Update Template Instances](https://github.com/infra-blocks/composite-action-template/actions/workflows/trigger-update-from-template.yml/badge.svg)](https://github.com/infra-blocks/composite-action-template/actions/workflows/trigger-update-from-template.yml)
+[![Trigger Update From Template](https://github.com/infra-blocks/composite-action-template/actions/workflows/trigger-update-from-template.yml/badge.svg)](https://github.com/infra-blocks/composite-action-template/actions/workflows/trigger-update-from-template.yml)
 
-Upon creating a repository from this template:
+[//]: # ([![Update From Template]&#40;https://github.com/infra-blocks/composite-action-template/actions/workflows/update-from-template.yml/badge.svg&#41;]&#40;https://github.com/infra-blocks/composite-action-template/actions/workflows/update-from-template.yml&#41;)
+
+Template repository for GitHub Actions using the composite engine. Upon instantiating, go through the following checklist:
+
+- Do a global search & replace for `composite-action-template` and replace it with the name of your repository
 - Remove the [trigger-update-from-template workflow](.github/workflows/trigger-update-from-template.yml)
-- Add the [update-from-template](.github/workflows/update-from-template.yml) status badge.
+- Replace the `Trigger Update From Template` status badge for the `Update From Template` status badge.
 - Edit the action.yml to correspond to your new action
 - Edit the self-test workflow.
-- Update the status badges:
-  - Remove the `Trigger Update From Template` status badge.
-  - Add the `Update From Template` status badge.
-  - Rename the rest of the links to point to the right repository.
 - Edit this readme: this summary and the usage section.
 
 ## Inputs
