@@ -1,5 +1,5 @@
 # upsert-comment-action
-[![Release](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/git-tag-semver-from-label.yml/badge.svg)](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/git-tag-semver-from-label.yml)
+[![Release](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/release.yml/badge.svg)](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/release.yml)
 [![Self Test](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/self-test.yml/badge.svg)](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/self-test.yml)
 [![Update From Template](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/update-from-template.yml/badge.svg)](https://github.com/infra-blocks/upsert-comment-action/actions/workflows/update-from-template.yml)
 
